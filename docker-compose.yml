@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres
+    container_name: my_postgres_db
+    environment:
+      - POSTGRES_USER=magazord
+      - POSTGRES_PASSWORD=rangervermelho
+      - POSTGRES_DB=production
+    ports:
+      - "5433:5432"  # Porta 5433 do host mapeada para 5432 do container
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
+    driver: local
