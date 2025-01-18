@@ -3,15 +3,13 @@ import pandas as pd
 import duckdb
 from pathlib import Path
 import psycopg2
-from dotenv import load_dotenv
+from concurrent.futures import ThreadPoolExecutor
 
 # Caminho relativo ao diretório do script ou diretório atual
 base_path = Path(__file__).parent if '__file__' in globals() else Path.cwd()
 
 # Voltando para o diretório pai (onde está a pasta 'data')
 data_path = base_path.parent / 'data'
-
-load_dotenv()
 
 class DataLoader:
     def __init__(self, source_type, source_path):
@@ -49,7 +47,7 @@ class DataLoader:
         """
         try:
             file_path = data_path / table_name  # Caminho ajustado para a pasta 'data'
-            
+            print(f"Caminho do arquivo: {file_path}")  # Depuração para garantir que o caminho está correto
             if not file_path.exists():
                 raise FileNotFoundError(f"O arquivo {file_path} não foi encontrado.")
             
@@ -92,3 +90,19 @@ class DataLoader:
         except Exception as e:
             print(f"Erro ao carregar dados do banco: {e}")
             return None
+
+def load_csv_data(filename):
+    """
+    Função para carregar dados CSV em paralelo.
+    """
+    data_loader_csv = DataLoader(source_type='csv', source_path='data')
+    df = data_loader_csv.load(filename)
+    return df
+
+def load_db_data(table_name):
+    """
+    Função para carregar dados de banco de dados em paralelo.
+    """
+    data_loader_db = DataLoader(source_type='db', source_path='public')
+    df = data_loader_db.load(table_name)
+    return df
