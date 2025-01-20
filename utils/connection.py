@@ -3,16 +3,14 @@ import pandas as pd
 import duckdb
 from pathlib import Path
 import psycopg2
-from concurrent.futures import ThreadPoolExecutor
 
-# Caminho relativo ao diretório do script ou diretório atual
+
+# Caminho do projeto na maquina atual
 base_path = Path(__file__).parent if '__file__' in globals() else Path.cwd()
-
-# Voltando para o diretório pai (onde está a pasta 'data')
-data_path = base_path.parent / 'data'
+data_path = base_path.parent / 'data' / 'staged'
 
 class DataLoader:
-    def __init__(self, source_type, source_path):
+    def __init__(self, source_type: str, source_path: str):
         """
         Inicializa o DataLoader.
         :param source_type: Tipo de fonte de dados ('csv' ou 'db').
@@ -22,7 +20,7 @@ class DataLoader:
         self.source_type = source_type
         self.source_path = source_path
 
-    def load(self, table_name):
+    def load(self, table_name: str):
         """
         Função para carregar os dados de acordo com o tipo, CSV ou Database.
         :param table_name: Nome do arquivo CSV ou tabela do banco de dados.
@@ -39,24 +37,40 @@ class DataLoader:
             print(f"Erro ao carregar os dados: {e}")
             return None
 
-    def _load_from_csv(self, table_name):
+    def _load_from_csv(self, table_name: str) -> pd.DataFrame:
         """
         Carregar dados a partir de arquivos CSV usando DuckDB.
-        :param table_name: Nome do arquivo CSV.
+        Se o caminho for uma pasta, ele lê todos os CSVs na pasta.
+        :param table_name: Nome do arquivo ou pasta que contém os CSVs.
         :return: DataFrame com os dados carregados.
         """
         try:
-            file_path = data_path / table_name  # Caminho ajustado para a pasta 'data'
-            print(f"Caminho do arquivo: {file_path}")  # Depuração para garantir que o caminho está correto
-            if not file_path.exists():
-                raise FileNotFoundError(f"O arquivo {file_path} não foi encontrado.")
+            # Verifica se é uma pasta ou arquivo
+            path = data_path / table_name
+            print(f"Caminho do arquivo/pasta: {path}")
             
-            # Usando DuckDB para carregar o CSV diretamente em um DataFrame
-            conn = duckdb.connect()  # Conexão em memória
-            query = f"SELECT * FROM read_csv_auto('{file_path}')"
-            df = conn.execute(query).fetchdf()
-            conn.close()  # Fechar a conexão com DuckDB
-            return df
+            if path.is_dir():  # Se for uma pasta
+                dfs = []  # Lista para armazenar os DataFrames de todos os CSVs na pasta
+                for csv_file in os.listdir(path):
+                    if csv_file.endswith('.csv'):  # Só considera arquivos CSV
+                        file_path = path / csv_file
+                        print(f"Lendo arquivo CSV: {file_path}")
+                        with duckdb.connect() as con:
+                            df = con.execute(f"SELECT * FROM read_csv_auto('{file_path}')").fetchdf()
+                            dfs.append(df)
+                # Concatenar todos os DataFrames dos arquivos CSV encontrados
+                if dfs:
+                    return pd.concat(dfs, ignore_index=True)
+                else:
+                    print(f"Nenhum arquivo CSV encontrado na pasta {path}.")
+                    return None
+            else:
+                # Se for um único arquivo CSV
+                if not path.exists():
+                    raise FileNotFoundError(f"O arquivo {path} não foi encontrado.")
+                with duckdb.connect() as con:
+                    df = con.execute(f"SELECT * FROM read_csv_auto('{path}')").fetchdf()
+                    return df
         except FileNotFoundError as e:
             print(f"Erro: {e}")
             return None
@@ -64,7 +78,7 @@ class DataLoader:
             print(f"Erro ao carregar o CSV: {e}")
             return None
 
-    def _load_from_db(self, table_name):
+    def _load_from_db(self, table_name: str) -> pd.DataFrame:
         """
         Carregar dados do banco de dados (aqui você pode implementar sua lógica de banco).
         :param table_name: Nome da tabela no banco de dados.
@@ -91,7 +105,7 @@ class DataLoader:
             print(f"Erro ao carregar dados do banco: {e}")
             return None
 
-def load_csv_data(filename):
+def load_csv_data(filename: str) -> object:
     """
     Função para carregar dados CSV em paralelo.
     """
@@ -99,10 +113,11 @@ def load_csv_data(filename):
     df = data_loader_csv.load(filename)
     return df
 
-def load_db_data(table_name):
+def load_db_data(table_name: str):
     """
     Função para carregar dados de banco de dados em paralelo.
     """
     data_loader_db = DataLoader(source_type='db', source_path='public')
     df = data_loader_db.load(table_name)
     return df
+
