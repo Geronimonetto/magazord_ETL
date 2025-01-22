@@ -41,10 +41,4 @@ def execute_sql_file(file_path):
             cursor.close()
             conn.close()
 
-# Exemplo de uso do script
-if __name__ == "__main__":
-    # Caminho do arquivo .sql
-    sql_file_path = "./scripts/create_tables.sql"
-    
-    # Executar os comandos SQL do arquivo
-    execute_sql_file(sql_file_path)
+
