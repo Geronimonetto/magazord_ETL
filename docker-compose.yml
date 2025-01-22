@@ -13,6 +13,29 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
+  dremio:
+    image: dremio/dremio-oss:latest
+    container_name: dremio_service
+    environment:
+      - SERVICES_COORDINATOR_ENABLED=true
+      - SERVICES_EXECUTOR_ENABLED=false
+      - JAVA_OPTS=-Xms2g -Xmx4g
+    ports:
+      - "9047:9047"  # Porta do Dremio UI
+      - "31010:31010"  # Porta de execução
+    volumes:
+      - dremio_data:/opt/dremio/data
+      - dremio_log:/opt/dremio/log
+      - dremio_conf:/opt/dremio/conf
+    depends_on:
+      - db  # Garante que o serviço 'db' seja iniciado antes do Dremio
+
 volumes:
   postgres_data:
+    driver: local
+  dremio_data:
+    driver: local
+  dremio_log:
+    driver: local
+  dremio_conf:
     driver: local
