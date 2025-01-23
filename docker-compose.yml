@@ -3,7 +3,7 @@ version: '3.8'
 services:
   db:
     image: postgres
-    container_name: my_postgres_db
+    container_name: postgresqll
     environment:
       - POSTGRES_USER=magazord
       - POSTGRES_PASSWORD=rangervermelho
@@ -15,7 +15,7 @@ services:
 
   dremio:
     image: dremio/dremio-oss:latest
-    container_name: dremio_service
+    container_name: dremio_servicess
     environment:
       - SERVICES_COORDINATOR_ENABLED=true
       - SERVICES_EXECUTOR_ENABLED=false
