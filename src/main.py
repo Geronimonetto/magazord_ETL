@@ -1,6 +1,6 @@
 import time
 from utils.connection import load_csv_data, load_db_data
-from utils.create_tables import execute_sql_file, insert_into_table
+from utils.create_tables import execute_sql_file, insert_into_table, create_index
 from utils.transform_data import transformar_csv_cliente, transformar_csv_produto, transformar_csv_transacao
 from concurrent.futures import ThreadPoolExecutor
 
@@ -52,7 +52,11 @@ def process_and_insert_data():
     insert_into_table(transacoes_df_csv, "transacoes")  # Inserir dados de transações por último
 
     print("Dados inseridos no banco de dados com sucesso!")
-
+    
+    # Criando índices das tabelas para otimizar as consultas
+    create_index("clientes", "id_cliente")
+    create_index("produtos", "id_produto")
+    create_index("transacoes", "id_transacao")
 
 # Função principal que executa as tarefas sequenciais
 def run():
