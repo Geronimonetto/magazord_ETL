@@ -53,14 +53,6 @@ def process_and_insert_data():
 
     print("Dados inseridos no banco de dados com sucesso!")
 
-# Função para criar as views no banco de dados
-def create_views():
-    print("Iniciando a criação das views no banco de dados...")
-
-    sql_file_path = "./scripts/create_views.sql"  # O arquivo com os comandos das views
-    execute_sql_file(sql_file_path)  # Executar as views no banco de dados
-
-    print("Views criadas com sucesso!")
 
 # Função principal que executa as tarefas sequenciais
 def run():
@@ -76,9 +68,6 @@ def run():
 
     # Passo 2: Processar e inserir os dados
     process_and_insert_data()
-
-    # Passo 3: Criar as views no banco de dados
-    create_views()
 
     # Finalizando o fluxo
     end_time = time.time() - start_time
