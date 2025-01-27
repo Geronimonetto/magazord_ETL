@@ -2,18 +2,36 @@ version: '3.8'
 
 services:
   db:
-    image: postgres
+    image: postgres:15
     container_name: postgresqll
     environment:
       - POSTGRES_USER=magazord
       - POSTGRES_PASSWORD=rangervermelho
       - POSTGRES_DB=production
+    networks:
+      - network
     ports:
       - "5433:5432"  # Porta 5433 do host mapeada para 5432 do container
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
 
+#    volumes:
+#     - postgres_data:/var/lib/postgresql/data
+
+  app: 
+    build: .
+    container_name: magazord
+    depends_on:
+      - db
+    networks:
+      - network
+    command: python -u main.py
+    pull_policy: build
+
+networks:
+  network:
+      external:
+        name: connect
 volumes:
   postgres_data:
     driver: local
+
 
