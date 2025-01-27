@@ -43,17 +43,31 @@ def execute_sql_file(file_path):
             cursor.close()
             conn.close()
 
-def insert_into_table(df, table_name, index_table):
+def insert_into_table(df, table_name):
     try:
         star_time = time.time()
         # Criar engine de conexão com o banco de dados
         engine = create_engine(f'postgresql://{os.getenv("DB_USER")}:{os.getenv("DB_PASSWORD")}@{os.getenv("DB_HOST")}:{os.getenv("DB_PORT")}/{os.getenv("DB_NAME")}')
         
         # Inserir os dados diretamente no banco usando pandas
-        df.to_sql(table_name, engine, if_exists='append', index=True)
+        df.to_sql(table_name, engine, if_exists='append', index=False)
         print(f"Dados inseridos com sucesso na tabela {table_name}.")
         end_time = time.time() - star_time
         print(f"Tempo de execução: {end_time} segundos.")
     except Exception as e:
         print(f"Erro ao inserir dados na tabela {table_name}: {e}")
 
+def create_index(table_name, column_name):
+    conn = connect_to_db()
+    if conn:
+        cursor = conn.cursor()
+        try:
+            cursor.execute(f"CREATE INDEX idx_{table_name}_{column_name} ON {table_name} ({column_name});")
+            conn.commit()
+            print(f"Índice criado com sucesso na tabela {table_name}.")
+        except Exception as e:
+            print(f"Erro ao criar índice na tabela {table_name}: {e}")
+            conn.rollback()
+        finally:
+            cursor.close()
+            conn.close()
