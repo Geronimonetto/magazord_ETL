@@ -173,5 +173,31 @@ As consultas a seguir foram criadas para atender às necessidades analíticas do
 
 ---
 
-Este projeto foi desenvolvido com foco em eficiência, escalabilidade e boas práticas de engenharia de dados, garantindo soluções robustas e fáceis de manutenção. Para dúvidas ou melhorias, entre em contato!
+### Arquitetura de Dados
+Este projeto segue uma arquitetura de dados em camadas, estruturada para otimizar a coleta, o processamento e a análise das informações.
+
+Staging
+A camada de staging é responsável por armazenar os dados brutos importados de diversas fontes. Esses dados são mantidos na forma original para garantir a integridade e a flexibilidade para transformações futuras.
+
+Datamart
+Após o processamento, os dados são transformados e organizados em datamarts, que são otimizados para consultas e análise. Os datamarts contêm dados específicos para diferentes áreas de negócio, como vendas, marketing e finanças.
+
+
+### Camada de Staging.
+![Camada staging](https://i.imgur.com/urqifmz.png)
+
+### Camada de Datamart.
+![Camada datamart](https://i.imgur.com/jAfc4SI.png)
+
+---
+Essa abordagem permite que os dados sejam acessados de forma eficiente, melhorando o desempenho das consultas e a análise.
+
+# Conclusão
+O projeto Magazord-ETL foi desenvolvido com o objetivo de criar um pipeline eficiente para o processamento de grandes volumes de dados de vendas, utilizando uma arquitetura robusta em camadas. A estratégia de utilizar uma abordagem ELT, onde as transformações são feitas diretamente no banco de dados com DBT Core, garante flexibilidade e escalabilidade ao processo de integração e transformação dos dados.
+
+A separação em camadas de Staging e Datamart facilita a organização e o acesso rápido aos dados para análise, enquanto o uso de ferramentas como DuckDB, Python, DBT Core e PostgreSQL proporciona um ambiente eficiente e de fácil manutenção. A implementação de consultas analíticas, como a receita total por categoria de produto e o top 5 produtos mais vendidos, permite que a empresa extraia insights valiosos para decisões estratégicas.
+
+Com a utilização do Docker para facilitar a configuração e o gerenciamento do banco de dados, além de práticas de otimização e indexação, o projeto está preparado para lidar com grandes volumes de dados de maneira rápida e eficaz.
+
+Esta arquitetura garante a integridade dos dados, oferece flexibilidade para transformações futuras e melhora o desempenho nas consultas analíticas, permitindo que as equipes de dados possam tomar decisões informadas e com maior agilidade.
 
