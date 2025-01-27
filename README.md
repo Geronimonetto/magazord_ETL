@@ -74,64 +74,9 @@ O diagrama a seguir representa a arquitetura geral do projeto:
    docker --version
    ```
 
-### 2. Criação do Ambiente Virtual
-
-1. Navegue até o diretório do projeto.
-2. Crie o ambiente virtual:
-   - **Windows**:
-     ```bash
-     python -m venv venv
-     ```
-   - **Linux**:
-     ```bash
-     python3 -m venv venv
-     ```
-
-3. Ative o ambiente virtual:
-   - **Windows**:
-     ```bash
-     .\venv\Scripts\activate
-     ```
-   - **Linux**:
-     ```bash
-     source venv/bin/activate
-     ```
-
-### 3. Instalação das Dependências
-
-Com o ambiente virtual ativado, instale as dependências do projeto:
-```bash
-pip install -r requirements.txt
-```
-
-### 4. Configuração do Banco de Dados
-
-1. Navegue até o diretório onde está localizado o arquivo `docker-compose.yml`.
-2. Inicie o banco de dados PostgreSQL:
+### 2. Execução do projeto
    ```bash
-   docker-compose up -d
-   ```
-3. Verifique os contêineres em execução:
-   ```bash
-   docker ps
-   ```
-
-### 5. Execução do Pipeline
-
-1. Com o ambiente virtual ativado, execute o script principal:
-   ```bash
-   python -m src.main
-   ```
-
-### 6. Execução do DBT
-
-1. Navegue até o diretório do projeto DBT (`magazorddw`):
-   ```bash
-   cd magazorddw
-   ```
-2. Execute o comando para rodar as transformações:
-   ```bash
-   dbt run
+   docker-compose up
    ```
 
 ## Consultas Analíticas
