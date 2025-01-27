@@ -1,0 +1,67 @@
+version: 2
+
+models:
+  - name: dm_clientes_ativos
+    description: "Tabela contendo os clientes que realizaram pelo menos uma transação."
+    columns:
+      - name: id_cliente
+        description: "Identificador único do cliente."
+        tests:
+          - not_null
+          - unique
+      - name: nome_cliente
+        description: "Nome do cliente."
+      - name: email
+        description: "Email do cliente."
+      - name: telefone
+        description: "Telefone do cliente."
+      - name: total_transacoes
+        description: "Número de transações realizadas pelo cliente."
+
+  - name: dm_receita_total_por_categoria_produto
+    description: "Tabela que mostra a receita total por categoria de produto."
+    columns:
+      - name: categoria
+        description: "Categoria do produto."
+      - name: receita_total
+        description: "Valor total de receita gerado pela categoria."
+
+  - name: dm_top_5_produtos_mais_vendidos
+    description: "Tabela com os 5 produtos mais vendidos com base na quantidade."
+    columns:
+      - name: id_produto
+        description: "Identificador único do produto."
+        tests:
+          - not_null
+          - unique
+      - name: nome_produto
+        description: "Nome do produto."
+      - name: total_quantidade_vendida
+        description: "Quantidade total vendida do produto."
+
+  - name: dm_transacoes_clientes
+    description: "Tabela de transações de clientes, incluindo informações sobre produtos e valores."
+    columns:
+      - name: id_transacao
+        description: "Identificador único da transação."
+        tests:
+          - not_null
+          - unique
+      - name: id_cliente
+        description: "Identificador único do cliente."
+      - name: nome_cliente
+        description: "Nome do cliente."
+      - name: email
+        description: "Email do cliente."
+      - name: id_produto
+        description: "Identificador único do produto."
+      - name: nome_produto
+        description: "Nome do produto."
+      - name: categoria
+        description: "Categoria do produto."
+      - name: preco
+        description: "Preço do produto."
+      - name: quantidade
+        description: "Quantidade comprada do produto."
+      - name: data_transacao
+        description: "Data da transação."

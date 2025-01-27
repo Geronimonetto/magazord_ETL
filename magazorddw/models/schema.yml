@@ -1,0 +1,75 @@
+version: 2
+
+sources:
+  - name: production
+    schema: public
+    tables:
+      - name: clientes
+        description: "Tabela com as informações dos clientes"
+        columns:
+          - name: id_cliente
+            description: "Identificador único do cliente"
+          - name: nome_cliente
+            description: "Nome do cliente"
+          - name: email
+            description: "E-mail do cliente"
+          - name: telefone
+            description: "Telefone do cliente"
+
+      - name: produtos
+        description: "Tabela com os produtos cadastrados"
+        columns:
+          - name: id_produto
+            description: "Identificador único do produto"
+            primary_key: true
+          - name: nome_produto
+            description: "Nome do produto"
+          - name: categoria
+            description: "Categoria do produto"
+          - name: preco
+            description: "Preço do produto"
+
+      - name: transacoes
+        description: "Tabela com as informações das transações realizadas"
+        columns:
+          - name: id_transacao
+            description: "Identificador único da transação"
+            primary_key: true
+          - name: id_cliente
+            description: "Identificador do cliente"
+          - name: id_produto
+            description: "Identificador do produto"
+          - name: quantidade
+            description: "Quantidade comprada"
+          - name: data_transacao
+            description: "Data da transação"
+
+  # - name: raw_data
+  #   description: "Fonte de dados raw para clientes e transações"
+  #   tables:
+  #     - name: cliente_parquet
+  #       description: "Tabela de clientes armazenada em arquivo Parquet"
+  #       external:
+  #         location: "./data/raw/cliente.parquet"  # Caminho do arquivo Parquet para clientes
+  #         file_format:
+  #           type: parquet  # Tipo de arquivo Parquet
+          
+  #     - name: transacoes_parquet
+  #       description: "Tabela de transações armazenada em arquivo Parquet"
+  #       external:
+  #         location: "./data/raw/transacoes.parquet"  # Caminho do arquivo Parquet para transações
+  #         file_format:
+  #           type: parquet  # Tipo de arquivo Parquet
+
+  #     - name: cliente.csv
+  #         description: "Dados de clientes em um csv"
+  #         tables:
+  #           - name: cliente.parquet
+  #             description: "Tabelas de clientes"
+  #             external:
+  #               location: "./data/raw/clientes.parquet"  # Caminho do arquivo CSV
+  #               file_format:
+  #                 type: parquet
+  #                 field_delimiter: "," 
+  #                 skip_header: 1 
+  #                 null_value: "NULL"

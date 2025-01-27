@@ -1,0 +1,42 @@
+version: 2
+
+models:
+  - name: stg_clientes
+    description: "Tabela staging contendo as informações padronizadas dos clientes."
+    columns:
+      - name: id_cliente
+        description: "Identificador único do cliente."
+      - name: nome_cliente
+        description: "Nome completo do cliente."
+      - name: email
+        description: "E-mail do cliente."
+      - name: telefone
+        description: "Telefone de contato do cliente."
+
+  - name: stg_transacoes
+    description: "Tabela staging contendo as informações das transações realizadas pelos clientes."
+    columns:
+      - name: id_transacao
+        description: "Identificador único da transação."
+      - name: id_cliente
+        description: "Identificador do cliente associado à transação."
+      - name: id_produto
+        description: "Identificador do produto adquirido."
+      - name: quantidade
+        description: "Quantidade do produto adquirido na transação."
+      - name: data_transacao
+        description: "Data em que a transação foi realizada."
+
+
+  - name: stg_produtos
+    description: "Tabela staging contendo as informações dos produtos disponíveis."
+    columns:
+      - name: id_produto
+        description: "Identificador único do produto."
+      - name: nome_produto
+        description: "Nome do produto."
+      - name: categoria
+        description: "Categoria do produto."
+      - name: preco
+        description: "Preço unitário do produto."
+

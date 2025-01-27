@@ -1,0 +1,76 @@
+[0m18:08:06.482768 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000232A83D9160>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000232A6528E10>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000232A902E490>]}
+
+
+============================== 18:08:06.486429 | d6f8512d-436f-489b-a7d6-f4e247935940 ==============================
+[0m18:08:06.486429 [info ] [MainThread]: Running with dbt=1.9.1
+[0m18:08:06.487119 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'log_cache_events': 'False', 'write_json': 'True', 'partial_parse': 'True', 'cache_selected_only': 'False', 'warn_error': 'None', 'version_check': 'True', 'profiles_dir': 'C:\\Users\\geron\\.dbt', 'log_path': 'logs', 'fail_fast': 'False', 'debug': 'False', 'use_colors': 'True', 'use_experimental_parser': 'False', 'empty': 'None', 'quiet': 'False', 'no_print': 'None', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'introspect': 'True', 'log_format': 'default', 'static_parser': 'True', 'target_path': 'None', 'invocation_command': 'dbt init', 'send_anonymous_usage_stats': 'True'}
+[0m18:08:06.501595 [warn ] [MainThread]: [ConfigFolderDirectory]: Unable to parse logging event dictionary. Failed to parse dir field: expected string or bytes-like object, got 'WindowsPath'.. Dictionary: {'dir': WindowsPath('C:/Users/geron/.dbt')}
+[0m18:08:06.502129 [info ] [MainThread]: Creating dbt configuration folder at 
+[0m18:08:10.661905 [debug] [MainThread]: Starter project path: C:\Users\geron\Desktop\Projetos-Pessoais\magazord-etl\.venv\Lib\site-packages\dbt\include\starter_project
+[0m18:08:10.673633 [info ] [MainThread]: 
+Your new dbt project "magazorddw" was created!
+
+For more information on how to configure the profiles.yml file,
+please consult the dbt documentation here:
+
+  https://docs.getdbt.com/docs/configure-your-profile
+
+One more thing:
+
+Need help? Don't hesitate to reach out to us via GitHub issues or on Slack:
+
+  https://community.getdbt.com/
+
+Happy modeling!
+
+[0m18:08:10.674295 [info ] [MainThread]: Setting up your profile.
+[0m18:08:36.408596 [info ] [MainThread]: Profile magazorddw written to C:\Users\geron\.dbt\profiles.yml using target's profile_template.yml and your supplied values. Run 'dbt debug' to validate the connection.
+[0m18:08:36.409570 [debug] [MainThread]: Command `dbt init` succeeded at 18:08:36.409459 after 30.07 seconds
+[0m18:08:36.409875 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000232A96C4B00>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000232A9592210>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000232A93A6AD0>]}
+[0m18:08:36.410214 [debug] [MainThread]: Flushing usage events
+[0m18:08:37.124553 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m20:18:51.356598 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001DB527DCEC0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001DB509C8A50>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001DB5340E350>]}
+
+
+============================== 20:18:51.362450 | 4992916a-8dc2-4623-8850-b4952fc04718 ==============================
+[0m20:18:51.362450 [info ] [MainThread]: Running with dbt=1.9.1
+[0m20:18:51.363168 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'log_cache_events': 'False', 'write_json': 'True', 'partial_parse': 'True', 'cache_selected_only': 'False', 'profiles_dir': 'C:\\Users\\geron\\Desktop\\Projetos-Pessoais\\magazord-etl', 'version_check': 'True', 'fail_fast': 'False', 'log_path': 'logs', 'warn_error': 'None', 'debug': 'False', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'empty': 'False', 'log_format': 'default', 'static_parser': 'True', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'introspect': 'True', 'target_path': 'None', 'invocation_command': 'dbt run', 'send_anonymous_usage_stats': 'True'}
+[0m20:18:51.363610 [error] [MainThread]: Encountered an error:
+Runtime Error
+  No dbt_project.yml found at expected path C:\Users\geron\Desktop\Projetos-Pessoais\magazord-etl\dbt_project.yml
+  Verify that each entry within packages.yml (and their transitive dependencies) contains a file named dbt_project.yml
+  
+[0m20:18:51.364316 [debug] [MainThread]: Command `dbt run` failed at 20:18:51.364209 after 0.21 seconds
+[0m20:18:51.364610 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001DB5390C770>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001DB53904EF0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001DB53789F20>]}
+[0m20:18:51.364922 [debug] [MainThread]: Flushing usage events
+[0m20:18:52.266950 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m20:19:09.876923 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002177876CEC0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000217768F8A50>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000217793AE350>]}
+
+
+============================== 20:19:09.881635 | f49996af-4546-47b1-aac4-2e98f05c4882 ==============================
+[0m20:19:09.881635 [info ] [MainThread]: Running with dbt=1.9.1
+[0m20:19:09.882354 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'write_json': 'True', 'log_cache_events': 'False', 'partial_parse': 'True', 'cache_selected_only': 'False', 'warn_error': 'None', 'debug': 'False', 'version_check': 'True', 'log_path': 'logs', 'fail_fast': 'False', 'profiles_dir': 'C:\\Users\\geron\\Desktop\\Projetos-Pessoais\\magazord-etl', 'use_colors': 'True', 'use_experimental_parser': 'False', 'empty': 'None', 'quiet': 'False', 'no_print': 'None', 'log_format': 'default', 'introspect': 'True', 'static_parser': 'True', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'target_path': 'None', 'invocation_command': 'dbt init', 'send_anonymous_usage_stats': 'True'}
+[0m20:19:23.577262 [error] [MainThread]: Encountered an error:
+
+[0m20:19:23.580739 [error] [MainThread]: Traceback (most recent call last):
+  File "C:\Users\geron\Desktop\Projetos-Pessoais\magazord-etl\.venv\Lib\site-packages\dbt\cli\requires.py", line 153, in wrapper
+    result, success = func(*args, **kwargs)
+                      ~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\geron\Desktop\Projetos-Pessoais\magazord-etl\.venv\Lib\site-packages\dbt\cli\requires.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "C:\Users\geron\Desktop\Projetos-Pessoais\magazord-etl\.venv\Lib\site-packages\dbt\cli\main.py", line 477, in init
+    results = task.run()
+  File "C:\Users\geron\Desktop\Projetos-Pessoais\magazord-etl\.venv\Lib\site-packages\dbt\task\init.py", line 324, in run
+    project_name = self.get_valid_project_name()
+  File "C:\Users\geron\Desktop\Projetos-Pessoais\magazord-etl\.venv\Lib\site-packages\dbt\task\init.py", line 278, in get_valid_project_name
+    name = click.prompt("Enter a name for your project (letters, digits, underscore)")
+  File "C:\Users\geron\Desktop\Projetos-Pessoais\magazord-etl\.venv\Lib\site-packages\click\termui.py", line 164, in prompt
+    value = prompt_func(prompt)
+  File "C:\Users\geron\Desktop\Projetos-Pessoais\magazord-etl\.venv\Lib\site-packages\click\termui.py", line 147, in prompt_func
+    raise Abort() from None
+click.exceptions.Abort
+
+[0m20:19:23.581875 [debug] [MainThread]: Command `dbt init` failed at 20:19:23.581749 after 13.84 seconds
+[0m20:19:23.582206 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000217798A9E00>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000021779921010>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002177972A9C0>]}
+[0m20:19:23.582547 [debug] [MainThread]: Flushing usage events
+[0m20:19:24.357289 [debug] [MainThread]: An error was encountered while trying to flush usage events
