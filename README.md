@@ -48,7 +48,7 @@ As seguintes ferramentas foram escolhidas para garantir eficiência e escalabili
 ## Diagrama do Projeto
 O diagrama a seguir representa a arquitetura geral do projeto:
 
-![Imagem do diagrama](https://imgur.com/kCbdNAY)
+![Imagem do diagrama](https://i.imgur.com/kCbdNAY.png)
 
 ## Como Executar o Projeto
 
