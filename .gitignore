@@ -1,6 +1,3 @@
-# Ignorar o arquivo .env
-.env
-
 # Ignorar a pasta .venv
 .venv/
 
